@@ -72,6 +72,11 @@ public class Money {
 		Money other = (Money) obj;
 		return currency == other.currency && Double.doubleToLongBits(value) == Double.doubleToLongBits(other.value);
 	}
+
+
+	public boolean lessThan(Money of) {
+		return false;
+	}
 	
 	
 	

@@ -149,6 +149,17 @@ public class Employee extends User {
 			return this;
 		}
 		
+		public Employee build() {
+			// Business Rule
+			// Policy
+			if (jobStyle == JobStyle.FULL_TIME && salary.lessThan(Money.of(5500)))
+				throw new IllegalArgumentException("Salary is less than minimum wage for full-time employee.");
+			// Invariants
+			// Constraint
+			// Validation
+			return new Employee(this);
+		}
+		
 	}
 	
 	
