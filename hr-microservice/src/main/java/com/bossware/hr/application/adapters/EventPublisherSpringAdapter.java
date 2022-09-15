@@ -1,0 +1,21 @@
+package com.bossware.hr.application.adapters;
+
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.stereotype.Service;
+
+import com.bossware.hr.application.events.EventBase;
+import com.bossware.hr.application.events.EventPublisher;
+
+public class EventPublisherSpringAdapter implements EventPublisher<EventBase> {
+	private final ApplicationEventPublisher applicationEventPublisher;
+	
+	public EventPublisherSpringAdapter(ApplicationEventPublisher applicationEventPublisher) {
+		this.applicationEventPublisher = applicationEventPublisher;
+	}
+
+	@Override
+	public void publishEvent(EventBase event) {
+		applicationEventPublisher.publishEvent(event);
+	}
+
+}
