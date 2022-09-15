@@ -9,7 +9,7 @@ import com.bossware.hr.core.entity.EmployeeEntity;
 import com.bossware.hr.domain.valueObjects.Department;
 import com.bossware.hr.domain.valueObjects.JobStyle;
 
-public interface EmployeeRepository extends JpaRepository<EmployeeEntity, String> {
+public interface EmployeeEntityRepository extends JpaRepository<EmployeeEntity, String> {
 	List<EmployeeEntity> findAllByBirthYearBetweenAndJobStyleAndDepartment(int fromYear, int toYear, JobStyle style,
 			Department department);
 
