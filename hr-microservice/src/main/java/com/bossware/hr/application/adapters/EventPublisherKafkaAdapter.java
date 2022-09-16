@@ -1,16 +1,12 @@
 package com.bossware.hr.application.adapters;
 
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Service;
-
 import com.bossware.hr.application.events.EventBase;
 import com.bossware.hr.application.events.EventPublisher;
-import com.bossware.hr.domain.annotations.Adapter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@Service
-@Adapter(port = EventPublisher.class)
+
 public class EventPublisherKafkaAdapter implements EventPublisher<EventBase> {
 	private final KafkaTemplate<String, String> kafkaTemplate;
 	private final ObjectMapper objectMapper;
@@ -25,6 +21,7 @@ public class EventPublisherKafkaAdapter implements EventPublisher<EventBase> {
 		try {
 			var eventAsJson = objectMapper.writeValueAsString(event);
 			kafkaTemplate.send("hr-events", eventAsJson);
+			System.err.println("EventFired-> %s".formatted(eventAsJson));
 		} catch (JsonProcessingException e) {
 			System.err.println("Error has occured while converting event to json!");
 		}

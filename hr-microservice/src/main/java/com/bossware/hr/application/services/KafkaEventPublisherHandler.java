@@ -9,25 +9,27 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class KafkaEvenPublisherService {
+public class KafkaEventPublisherHandler {
 	private final KafkaTemplate<String, String> kafkaTemplate;
 	private final ObjectMapper objectMapper;
 	
-
-	public KafkaEvenPublisherService(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
+	public KafkaEventPublisherHandler(KafkaTemplate<String, String> kafkaTemplate, ObjectMapper objectMapper) {
 		this.kafkaTemplate = kafkaTemplate;
 		this.objectMapper = objectMapper;
 	}
-
+	
 	@EventListener
 	public void listenAndPublishEventToKafka(EventBase event) {
 		try {
-			var eventAsJson = objectMapper.writeValueAsString(event);
-			kafkaTemplate.send("hr-events", eventAsJson);
+			var eventJson = objectMapper.writeValueAsString(event);
+			kafkaTemplate.send("hr-events",eventJson);
+			System.err.println("EventFiredfromhandler-> %s".formatted(event.getIdentity().getValue()));
+			
 		} catch (JsonProcessingException e) {
-			System.err.println("Error has occured while converting event to json!");	
+			System.err.println("Error On Publish Even To Kafka");
 		}
 	}
-
+	
 
 }
+
