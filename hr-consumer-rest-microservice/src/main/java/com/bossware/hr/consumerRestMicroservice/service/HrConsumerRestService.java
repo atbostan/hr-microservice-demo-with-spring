@@ -1,7 +1,6 @@
 package com.bossware.hr.consumerRestMicroservice.service;
 
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.bossware.hr.consumerRestMicroservice.dto.EmployeeRequest;
