@@ -8,7 +8,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @SpringBootApplication
 @RefreshScope
 public class HrMicroserviceApplication {
-
+	
 	@Value("${spring.datasource.url}")
 	public static String configUrlTrace;
 	
