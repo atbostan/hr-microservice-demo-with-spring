@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class HrMicroserviceApplication {
 
-	@Value("{$spring.datasource.url}")
+	@Value("${spring.datasource.url}")
 	public static String configUrlTrace;
 	
 	public static void main(String[] args) {
