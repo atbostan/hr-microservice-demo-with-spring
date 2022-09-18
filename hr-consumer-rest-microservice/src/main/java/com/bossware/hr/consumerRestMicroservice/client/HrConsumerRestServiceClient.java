@@ -14,7 +14,7 @@ import com.bossware.hr.consumerRestMicroservice.dto.EmployeeResponse;
 public interface HrConsumerRestServiceClient {
 	
 	@GetMapping("/api/v1/employees/{identitiy}")
-	public EmployeeResponse	getEmployeeByIdentity(@PathVariable String identity);
+	public EmployeeResponse	getEmployeeByIdentity(@PathVariable("identitiy") String identity);
 	
 	@PostMapping("/api/v1/employees")
 	public EmployeeResponse hire(@RequestBody EmployeeRequest request);

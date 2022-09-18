@@ -1,5 +1,6 @@
 package com.bossware.hr.presentation.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,12 +25,16 @@ import com.bossware.hr.core.dto.response.EmployeeResponse;
 public class HrController {
 	private final HrService hrService;
 	
+	@Value("${server.port}")
+	private int serverPort;
+	
 	public HrController(HrService hrService) {
 		this.hrService = hrService;
 	}
 
 	@GetMapping("{identity}")
 	public EmployeeResponse getEmployee(@PathVariable @TcKimlikNo String identity){
+		System.err.println("New req has arrived " + serverPort);
 		return hrService.findEmployeeByIdentity(identity);
 	}
 	
